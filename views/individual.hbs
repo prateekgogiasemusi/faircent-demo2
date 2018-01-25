@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Faircent Demo</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="analytics.js"></script>
+  <script>
+  appICEWeb.set('app_id', "5a685fd2c14ae922ba952f47");
+  appICEWeb.set('app_key', "b9e76509d744f448c6fc7813955a645cd82b05bd");
+  appICEWeb.set('api_key', "d985715d1bb48942d36d5d08de3b6a8c");
+
+  var unloadEvent = function (e) {
+      var firstName = document.getElementById('firstname').value;
+      var lastName = document.getElementById('lastname').value;
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      var mobile = document.getElementById('mobile').value;
+      var checkbox1 = document.getElementById('checkbox1').checked;
+      var checkbox2 = document.getElementById('checkbox2').checked;
+      var checkbox3 = document.getElementById('checkbox3').checked;
+
+      console.log('firstName:' + firstname);
+
+      appICEWeb.setEvent('Application Process not complete', {'firstname': firstName, 'lastname' : lastName, 'email' : email, 'mobile': mobile, 'checkbox1': checkbox1, 'checkbox2': checkbox2, 'checkbox3': checkbox3});
+      var confirmationMessage = "Warning: Leaving this page will result in any unsaved data being lost. Are you sure you wish to continue?";
+      (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+
+      return confirmationMessage; //Webkit, Safari, Chrome etc.
+  };
+
+  window.addEventListener("beforeunload", unloadEvent);
+
+
+    function submitFunction() {
+      var firstName = document.getElementById('firstname').value;
+      var lastName = document.getElementById('lastname').value;
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      var mobile = document.getElementById('mobile').value;
+      var checkbox1 = document.getElementById('checkbox1').checked;
+      var checkbox2 = document.getElementById('checkbox2').checked;
+      var checkbox3 = document.getElementById('checkbox3').checked;
+
+      appICEWeb.setEvent('Application Process is complete', {'email': email, 'mobile': mobile});
+      console.log('checkbox1: ' + checkbox1);
+
+
+    }
+
+
+
+  </script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="/" title="Faircent"><img
+          src="https://www.faircent.com/sites/all/themes/media-responsive-theme/logo.png" /> </a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li class="active"><a href="#">How It works</a></li>
+        <li class="active"><a href="#">Lenders</a></li>
+        <li class="active"><a href="#">Borrowers</a></li>
+        <li class="active"><a href="#">Knowledge Centre</a></li>
+        <li class="active"><a href="#">Tools</a></li>
+        <li class="active"><a href="#">Statistics</a></li>
+        <li class="active"><a href="#">About Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <form onsubmit="submitFunction()">
+      <div class="row">
+        <div class="form-group">
+          <input type="text" name="firstname" placeholder="First Name" class="form-control" id="firstname">
+        </div>
+        <div class="form-group">
+          <input type="text" name="lastname" placeholder="Last Name" class="form-control" id="lastname">
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Email" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+          <input type="password" name="password" placeholder="Password" class="form-control" id="password">
+        </div>
+        <div class="form-group">
+          <input type="number" name="number" placeholder="Mobile" class="form-control" id="mobile">
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label><input type="checkbox" id="checkbox1" required>I agree to the TERMS OF USE</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" id="checkbox2" required>I have read and agreed to the TERMS AND CONDITIONS.</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" id="checkbox3" required>I authorize faircent.com to make any enquiries with any finance company or bank or register credit bureau regarding my credit history with them.</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="submit" name="submit" value="Submit" class="btn btn-primary btn-lg col-md-12">
+          <p class="col-md-12 text-center">Register for a one time fee of  1000 only</p>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

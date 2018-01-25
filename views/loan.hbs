@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Faircent Demo</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="analytics.js"></script>
+  <script>
+  
+  appICEWeb.set('app_id', "5a685fd2c14ae922ba952f47");
+  appICEWeb.set('app_key', "b9e76509d744f448c6fc7813955a645cd82b05bd");
+  appICEWeb.set('api_key', "d985715d1bb48942d36d5d08de3b6a8c");
+
+  var buttonValue;
+
+    function submitFunction() {
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var mobile = document.getElementById('mobile').value;
+
+      if(buttonValue == 'Approved') {
+        appICEWeb.setEvent('Loan Approved', {'email': email, 'mobile': mobile, 'name': name});
+      }
+      else if(buttonValue == 'Not Approved') {
+        appICEWeb.setEvent('Loan Not Approved', {'email': email, 'mobile': mobile, 'name': name});
+      }
+    }
+
+  </script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="/" title="Faircent"><img
+          src="https://www.faircent.com/sites/all/themes/media-responsive-theme/logo.png" /> </a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li class="active"><a href="#">How It works</a></li>
+        <li class="active"><a href="#">Lenders</a></li>
+        <li class="active"><a href="#">Borrowers</a></li>
+        <li class="active"><a href="#">Knowledge Centre</a></li>
+        <li class="active"><a href="#">Tools</a></li>
+        <li class="active"><a href="#">Statistics</a></li>
+        <li class="active"><a href="#">About Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <form>
+          <div class="form-group">
+            <label for="name">Name: </label>
+            <input type="text" name="name" value="John Doe" class="form-control" id="name" disabled>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" name="email" value="johndoe@gmail.com" class="form-control" id="email" disabled>
+          </div>
+          <div class="form-group">
+            <label for="mobile">Mobile:</label>
+            <input type="text" name="mobile" value="+91 123456789" class="form-control" id="mobile" disabled>
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount:</label>
+            <input type="number" name="amount" value="10000" class="form-control" disabled>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <div class="col-md-12">
+          <h3 class="text-center">Loan Approval</h3>
+        </div>
+        <form onsubmit="submitFunction()">
+          <div class="form-group">
+            <input type="submit" name="approved" value="Approved" class="btn btn-success" onclick="buttonValue = this.value">
+          </div>
+          <div class="form-group">
+            <input type="submit" name="notapproved" value="Not Approved" class="btn btn-danger" onclick="buttonValue = this.value">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
