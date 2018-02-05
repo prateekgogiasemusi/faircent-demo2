@@ -10,7 +10,7 @@
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://s3-us-west-1.amazonaws.com/appice-databackups/appice-websdk/analytics.js"></script>
+  <script type="text/javascript" src="/javascripts/analytics.js"></script>
   <script>
   appICEWeb.set('app_id', "5a6ef06af05f372bee1d6448");
   appICEWeb.set('app_key', "829e76238bfd590f62bde90a544111b903887521");
@@ -28,7 +28,7 @@
 
       console.log('firstName:' + firstname);
 
-      appICEWeb.setEvent('Application Process not complete', {'firstname': firstName, 'lastname' : lastName, 'email' : email, 'mobile': mobile, 'checkbox1': checkbox1, 'checkbox2': checkbox2, 'checkbox3': checkbox3});
+      appICEWeb.setEvent('Application Process is not complete', {'firstname': firstName, 'lastname' : lastName, 'email' : email, 'mobile': mobile, 'checkbox1': checkbox1, 'checkbox2': checkbox2, 'checkbox3': checkbox3});
       var confirmationMessage = "Warning: Leaving this page will result in any unsaved data being lost. Are you sure you wish to continue?";
       (e || window.event).returnValue = confirmationMessage; //Gecko + IE
 
@@ -50,8 +50,6 @@
 
       appICEWeb.setEvent('Application Process is complete', {'email': email, 'mobile': mobile});
       console.log('checkbox1: ' + checkbox1);
-
-
     }
 
 
@@ -69,14 +67,14 @@
           src="https://www.faircent.com/sites/all/themes/media-responsive-theme/logo.png" /> </a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li class="active"><a href="#">How It works</a></li>
-        <li class="active"><a href="#">Lenders</a></li>
-        <li class="active"><a href="#">Borrowers</a></li>
-        <li class="active"><a href="#">Knowledge Centre</a></li>
-        <li class="active"><a href="#">Tools</a></li>
-        <li class="active"><a href="#">Statistics</a></li>
-        <li class="active"><a href="#">About Us</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">How It works</a></li>
+        <li><a href="#">Lenders</a></li>
+        <li><a href="#">Borrowers</a></li>
+        <li><a href="#">Knowledge Centre</a></li>
+        <li><a href="#">Tools</a></li>
+        <li><a href="#">Statistics</a></li>
+        <li><a href="#">About Us</a></li>
       </ul>
     </div>
   </nav>
