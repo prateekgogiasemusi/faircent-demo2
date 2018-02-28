@@ -3,7 +3,7 @@
   appICEWeb.appId = "";
   appICEWeb.appKey = "";
   appICEWeb.apiKey = "";
-  appICEWeb.API_URL = "http://stagingpanel.appice.io";
+  appICEWeb.API_URL = "http://localhost";
   appICEWeb.error = null;
   appICEWeb.success = "";
 
@@ -102,6 +102,7 @@
         "did": eventData.did,
         "_tz": eventData.tz,
         "key": eventName,
+        "eventTime": eventData.eventTime, 
         "sid": getSession()
       }];
 
@@ -122,12 +123,25 @@
 
   appICEWeb.sendData = function (eventData, events) {
     var request = createXMLHttp();
-    request.open('GET', encodeURI(appICEWeb.API_URL + '/i/V1/events?api_key=' + eventData.api_key + '&app_id=' + eventData.app_id + '&app_key=' + eventData.app_key + '&device_id=' + eventData.did + '&timestamp=' + eventData.timestamp + '&mtimestamp=' + eventData.mstimestamp + '&events=' + JSON.stringify(events)), true);
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.setRequestHeader('Access-Control-Allow-Origin', '*');
-    request.setRequestHeader('Access-Control-Allow-Methods', 'GET');
-    request.setRequestHeader('Access-Control-Allow-Credentials', true);
-    request.send();
+    var data = {
+      api_key: eventData.api_key,
+      app_id: eventData.app_id,
+      app_key: eventData.app_key,
+      device_id: eventData.did,
+      timestamp: eventData.timestamp,
+      mtimestamp: eventData.mstimestamp,
+      eventTime: eventData.eventTime,
+      events: events
+    }
+
+    request.open('POST', appICEWeb.API_URL + '/i/V1/events', true);
+    // request.setRequestHeader('Content-Type', 'application/json');
+    // request.setRequestHeader('Access-Control-Allow-Origin', '*');
+    // request.setRequestHeader('Access-Control-Allow-Methods', 'POST');
+    // request.setRequestHeader('Access-Control-Allow-Credentials', true);
+    // request.setRequestHeader('Content-Type', 'multipart/form-data');
+    // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
     request.onreadystatechange = function () {
       if (request.readyState === 4) {
         if (request.status === 200) {
@@ -138,6 +152,7 @@
         }
       }
     }
+    request.send(JSON.stringify(data));
   }
 
   function createXMLHttp() {
@@ -188,8 +203,7 @@
 
   function getUniqueId(appId, apiKey, callback) {
     var httpRequest = new XMLHttpRequest();
-    httpRequest.open('GET', 'http://stagingpanel.appice.io/o/webevents/getUniqueID?app_id=' + appId + '&api_key=' + apiKey);
-    httpRequest.send();
+    httpRequest.open('GET', 'http://localhost/o/webevents/getUniqueID?app_id=' + appId + '&api_key=' + apiKey, false);
     httpRequest.onreadystatechange = function () {
       if (httpRequest.readyState === 4) {
         if (httpRequest.status === 200) {
@@ -203,6 +217,7 @@
         }
       }
     }
+    httpRequest.send();
   }
 
   function getCookie(cookiename) {
@@ -231,7 +246,7 @@
   }
 
   function getSession() {
-    if(document.cookie.includes("appice_sess")) {
+    if (document.cookie.includes("appice_sess")) {
       var nameEQ = "appice_sess=";
       var ca = document.cookie.split(';');
       for (var i = 0; i < ca.length; i++) {
