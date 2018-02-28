@@ -203,7 +203,7 @@
 
   function getUniqueId(appId, apiKey, callback) {
     var httpRequest = new XMLHttpRequest();
-    httpRequest.open('GET', 'http://localhost/o/webevents/getUniqueID?app_id=' + appId + '&api_key=' + apiKey, false);
+    httpRequest.open('GET', 'http://stagingpanel.appice.io/o/webevents/getUniqueID?app_id=' + appId + '&api_key=' + apiKey, false);
     httpRequest.onreadystatechange = function () {
       if (httpRequest.readyState === 4) {
         if (httpRequest.status === 200) {
