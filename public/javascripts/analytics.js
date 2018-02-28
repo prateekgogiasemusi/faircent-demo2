@@ -135,7 +135,7 @@
     }
 
     request.open('POST', appICEWeb.API_URL + '/i/V1/events', true);
-    // request.setRequestHeader('Content-Type', 'application/json');
+    request.setRequestHeader('Content-Type', 'application/json');
     // request.setRequestHeader('Access-Control-Allow-Origin', '*');
     // request.setRequestHeader('Access-Control-Allow-Methods', 'POST');
     // request.setRequestHeader('Access-Control-Allow-Credentials', true);
