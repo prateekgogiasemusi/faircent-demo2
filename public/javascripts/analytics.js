@@ -3,7 +3,7 @@
   appICEWeb.appId = "";
   appICEWeb.appKey = "";
   appICEWeb.apiKey = "";
-  appICEWeb.API_URL = "http://localhost";
+  appICEWeb.API_URL = "http://stagingpanel.appice.io";
   appICEWeb.error = null;
   appICEWeb.success = "";
 
