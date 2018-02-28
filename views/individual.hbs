@@ -56,7 +56,8 @@
 
       appICEWeb.setEvent('Application Process is complete', { 'email': email, 'mobile': mobile });
       console.log('checkbox1: ' + checkbox1);
-      //window.location.reload();
+      window.location.reload();
+
     }
 
   </script>
@@ -102,7 +103,7 @@
   </nav>
 
   <div class="container">
-    <form action="#">
+    <form onsubmit="submitFunction()" method="POST" action="http://localhost/i/V1/events">
       <div class="row">
         <div class="form-group">
           <input type="text" name="firstname" placeholder="First Name" class="form-control" id="firstname">
@@ -135,7 +136,7 @@
           </div>
         </div>
         <div class="form-group">
-          <input type="submit" name="submit" value="Submit" class="btn btn-primary btn-lg col-md-12" onclick="submitFunction()">
+          <input type="submit" name="submit" value="Submit" class="btn btn-primary btn-lg col-md-12">
           <p class="col-md-12 text-center">Register for a one time fee of 1000 only</p>
         </div>
       </div>
